@@ -22,12 +22,12 @@ public class Bootstrap {
 		Country italy = new Country();
 		italy.setName("Italy");
 		
-		Country greece = new Country();
-		greece.setName("Greece");
+		Country england = new Country();
+		england.setName("England");
 		
 		countryRepository.save(serbia);
 		countryRepository.save(italy);
-		countryRepository.save(greece);
+		countryRepository.save(england);
 	}
 	
 }
