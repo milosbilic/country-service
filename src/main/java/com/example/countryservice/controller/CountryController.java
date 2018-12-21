@@ -3,6 +3,9 @@ package com.example.countryservice.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,9 +42,15 @@ public class CountryController {
 		CountryDto retVal = toCountryDto.convert(repository.findById(id).get());
 //		retVal.setCities(cityClient.findByCountry(id));
 		
-		List<CityDto> cities = (List<CityDto>) restTemplate.getForEntity(
-				"https://city-service.herokuapp.com/country/" + id, List.class);
-		retVal.setCities(cities);
+//		List<CityDto> cities = (List<CityDto>) restTemplate.getForEntity(
+//				"https://city-service.herokuapp.com/country/" + id, List.class);
+		
+		ResponseEntity<List<CityDto>> response = restTemplate.exchange(
+				"https://city-service.herokuapp.com/country/" + id,
+				  HttpMethod.GET,
+				  null,
+				  new ParameterizedTypeReference<List<CityDto>>(){});
+		retVal.setCities(response.getBody());
 		return retVal;
 	}
 	
