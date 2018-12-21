@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.countryservice.dto.CityDto;
 
-@FeignClient(name = "city-service")
+@FeignClient(name = "city-service", configuration = FeignClientConfig.class)
 public interface CityClient {
 
 	@GetMapping("/country/{countryId}")
