@@ -15,21 +15,21 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
-@EnableSwagger2
+//@EnableSwagger2
 public class CountryServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CountryServiceApplication.class, args);
 	}
 
-	@Bean
-    public Docket api() { 
-        return new Docket(DocumentationType.SWAGGER_2)  
-          .select()                                  
-          .apis(RequestHandlerSelectors.any())              
-          .paths(PathSelectors.any())                          
-          .build();                                           
-    }
+//	@Bean
+//    public Docket api() { 
+//        return new Docket(DocumentationType.SWAGGER_2)  
+//          .select()                                  
+//          .apis(RequestHandlerSelectors.any())              
+//          .paths(PathSelectors.any())                          
+//          .build();                                           
+//    }
 	
 }
 
