@@ -32,12 +32,14 @@ public class CountryController {
 	
 	private RestTemplate restTemplate = new RestTemplate();
 	
-	@GetMapping
+	private static final String APPLICATION_JSON = "application/json";
+	
+	@GetMapping(produces = APPLICATION_JSON)
 	public List<Country> listAll() {
 		return repository.findAll();
 	}
 	
-	@GetMapping("/{id}/with-cities")
+	@GetMapping(value= "/{id}/with-cities", produces = APPLICATION_JSON)
 	public CountryDto findByIdWithCities(@PathVariable Long id) {
 		CountryDto retVal = toCountryDto.convert(repository.findById(id).get());
 //		retVal.setCities(cityClient.findByCountry(id));
@@ -54,7 +56,7 @@ public class CountryController {
 		return retVal;
 	}
 	
-	@GetMapping("/test")
+	@GetMapping(value = "/test", produces = APPLICATION_JSON)
 	public String test() {
 		return "hello";
 	}
